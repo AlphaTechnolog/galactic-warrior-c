@@ -1,17 +1,19 @@
 CC=gcc
 CFLAGS=-I.
-DEPS = lib/menu.h
+DEPS = lib/menu.h lib/banner.h lib/termutils.h
+OBJECT_FILES = main.o ${DEPS:.h=.o}
+BINARY=galactic-warrior
 
 all: galactic-warrior
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-galactic-warrior: main.o lib/menu.o
-	$(CC) $(CFLAGS) -o galactic-warrior main.o lib/menu.o
+$(BINARY): $(OBJECT_FILES)
+	$(CC) $(CFLAGS) -o $(BINARY) $(OBJECT_FILES)
 
 clean:
-	rm -f *.o galactic-warrior
+	rm -f *.o $(BINARY)
 
-run: galactic-warrior
-	./galactic-warrior
+run: $(BINARY)
+	./$(BINARY)
