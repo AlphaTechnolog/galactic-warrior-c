@@ -5,6 +5,7 @@
 
 #include "menu.h"
 #include "banner.h"
+#include "../game/game.h"
 
 void print_options(int *selected_option) {
     char *options[4] = {
@@ -39,6 +40,35 @@ void select_next(int *option) {
     }
 }
 
+/**
+ * Selects an option where:
+ *
+ * 0 -> play
+ * 1 -> how to play
+ * 2 -> scoreboard
+ * 3 -> exit
+ */
+void select_option(int *option_ptr) {
+    if (*option_ptr < 0 || *option_ptr > 3) {
+        fprintf(stderr, "invalid option provided, this error shouldn't happen.\n");
+        exit(1);
+    }
+
+    switch (*option_ptr) {
+        case 0:
+            play();
+            break;
+        case 1:
+            fprintf(stderr, "how to play\n");
+            break;
+        case 2:
+            fprintf(stderr, "scoreboard\n");
+            break;
+        case 3:
+            break;
+    }
+}
+
 void print_menu() {
     int option = 0;
     int *option_ptr = &option;
@@ -56,8 +86,8 @@ void print_menu() {
     int c;
     while ((c = getchar()) != EOF) {
         if (c == '\n') {
-            fprintf(stderr, "Select!\n");
-            exit(1);
+            select_option(option_ptr);
+            break;
         }
 
         if (c == '\033') { // arrow keys escape sequence

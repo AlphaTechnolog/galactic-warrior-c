@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-I.
-DEPS = lib/menu.h lib/banner.h lib/termutils.h
+DEPS = lib/menu.h lib/banner.h lib/termutils.h game/game.h
 OBJECT_FILES = main.o ${DEPS:.h=.o}
 BINARY=galactic-warrior
 
@@ -13,7 +13,7 @@ $(BINARY): $(OBJECT_FILES)
 	$(CC) $(CFLAGS) -o $(BINARY) $(OBJECT_FILES)
 
 clean:
-	rm -f *.o $(BINARY)
+	rm -f *.o */*.o $(BINARY)
 
 run: $(BINARY)
 	./$(BINARY)
