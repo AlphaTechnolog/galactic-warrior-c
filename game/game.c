@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 #include "game.h"
-#include "../lib/termutils.h"
+#include "board.h"
 
 void play() {
-    clear_screen();
-    printf("hello, world!\n");
+    char **board = get_board();
+    display_board(board);
 }
