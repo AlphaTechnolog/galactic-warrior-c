@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-I.
-DEPS = lib/menu.h lib/banner.h lib/termutils.h game/game.h game/board.h
+DEPS = lib/menu.h lib/banner.h lib/termutils.h game/game.h game/board.h game/player.h
 OBJECT_FILES = main.o ${DEPS:.h=.o}
 BINARY=galactic-warrior
 
